@@ -1,32 +1,21 @@
-import { FunctionComponent, useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { FunctionComponent } from 'react'
 import './App.css'
+import { Button } from './components/Button'
+import { Header } from './components/Header'
 
 const App: FunctionComponent = () => {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className='App'>
-      <div className='flex flex-row justify-center'>
-        <a href='https://vitejs.dev' target='_blank' rel='noreferrer'>
-          <img src='/vite.svg' className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://reactjs.org' target='_blank' rel='noreferrer'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
+    <div className='flex flex-col w-screen h-screen bg-black bg-opacity-50'>
+      <Header />
+      <div className='flex flex-row flex-grow text-white'>
+        <div className='h-full flex flex-grow items-center justify-center'>Card Viewer</div>
+        <div className='h-full flex flex-grow items-center justify-center'>Card Editor</div>
       </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div className='h-20'>
+        <Button>
+          Submit Card
+        </Button>
       </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
