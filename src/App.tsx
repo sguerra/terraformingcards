@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 import './App.css'
 import { Button } from './components/Button'
+import { CardEditor } from './components/CardEditor'
 import { Header } from './components/Header'
 
 const App: FunctionComponent = () => {
@@ -9,7 +10,9 @@ const App: FunctionComponent = () => {
       <Header title='Terraforming Cards' />
       <div className='flex flex-row flex-grow text-white'>
         <div className='h-full flex flex-grow items-center justify-center'>Card Viewer</div>
-        <div className='h-full flex flex-grow items-center justify-center'>Card Editor</div>
+        <div className='h-full flex flex-grow items-center justify-center'>
+          <CardEditor />
+        </div>
       </div>
       <div className='h-20'>
         <Button>
