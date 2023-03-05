@@ -6,7 +6,7 @@ import { Header } from './components/Header'
 const App: FunctionComponent = () => {
   return (
     <div className='flex flex-col w-screen h-screen bg-black bg-opacity-50'>
-      <Header title="Terraforming Cards"/>
+      <Header title='Terraforming Cards' />
       <div className='flex flex-row flex-grow text-white'>
         <div className='h-full flex flex-grow items-center justify-center'>Card Viewer</div>
         <div className='h-full flex flex-grow items-center justify-center'>Card Editor</div>
