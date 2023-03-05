@@ -3,7 +3,7 @@ import { FunctionComponent, ReactNode } from 'react'
 interface CardFieldProps {
   children?: ReactNode
   label: string
-  inputType?: 'text' | 'number' | 'select'
+  inputType?: 'text' | 'number' | 'select-tag' | 'select-requisite'
   numberRange?: { min: number, max: number }
 }
 
@@ -22,7 +22,7 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ label, inputType,
           min={numberRange.min} max={numberRange.max}
         />)}
 
-      {hasInputType && inputType === 'select' && (
+      {hasInputType && inputType === 'select-tag' && (
         <select className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2'>
           <option value='none'>None</option>
           <option value='animal'>Animal</option>
@@ -45,6 +45,16 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ label, inputType,
           <option value='venus'>Venus</option>
           <option value='wild'>Wild</option>
         </select>)}
+
+      {hasInputType && inputType === 'select-requisite' && (
+        <select className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2'>
+          <option value='none'>None</option>
+          <option value='city'>Ciudad</option>
+          <option value='colony'>Colonia</option>
+          <option value='greenery-no-o2'>Invernadero</option>
+          <option value='ocean'>Océano</option>
+        </select>
+      )}
     </div>
   )
 }
