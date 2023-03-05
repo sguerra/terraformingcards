@@ -2,10 +2,24 @@ import { FunctionComponent } from 'react'
 
 export enum Tags {
   Animal = 'animal',
+  Building = 'building',
+  City = 'city',
   Earth = 'earth',
+  Event = 'event',
+  Galactic = 'galactic',
+  Infrastructure = 'infrastructure',
+  Jovian = 'jovian',
+  Mars = 'mars',
+  Microbe = 'microbe',
+  Moon = 'moon',
+  Planetary = 'planetary',
   Plant = 'plant',
+  Power = 'power',
+  Radioactive = 'radioactive',
+  Science = 'science',
   Space = 'space',
-  Venus = 'venus'
+  Venus = 'venus',
+  Wild = 'wild'
 }
 
 interface CardViewerProps {
@@ -18,7 +32,7 @@ interface CardViewerProps {
 export const CardViewer: FunctionComponent<CardViewerProps> = ({
   name = 'Sample Card',
   mc = 99,
-  tag = Tags.Earth,
+  tag = Tags.Moon,
   vps = 5
 }) => {
   return (
