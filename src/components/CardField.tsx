@@ -24,8 +24,26 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ label, inputType,
 
       {hasInputType && inputType === 'select' && (
         <select className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2'>
-          <option value='None'>None</option>
-          <option value='Plant'>Plant</option>
+          <option value='none'>None</option>
+          <option value='animal'>Animal</option>
+          <option value='build'>Building</option>
+          <option value='city'>City</option>
+          <option value='earth'>Earth</option>
+          <option value='event'>Event</option>
+          <option value='galactic'>Galactic</option>
+          <option value='infrastructure'>Infrastructure</option>
+          <option value='jovian'>Jovian</option>
+          <option value='mars'>Mars</option>
+          <option value='microbe'>Microbe</option>
+          <option value='moon'>Moon</option>
+          <option value='planetary'>Planetary</option>
+          <option value='plant'>Plant</option>
+          <option value='power'>Power</option>
+          <option value='radioactive'>Radioactive</option>
+          <option value='science'>Science</option>
+          <option value='space'>Space</option>
+          <option value='venus'>Venus</option>
+          <option value='wild'>Wild</option>
         </select>)}
     </div>
   )
