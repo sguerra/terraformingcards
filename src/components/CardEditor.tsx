@@ -7,7 +7,7 @@ interface CardEditorProps {
 
 export const CardEditor: FunctionComponent<CardEditorProps> = ({ onChange = () => {} }) => {
   return (
-    <div className='bg-contain pt-12 h-[478px] w-[334px] bg-[url("img/tmtemplates/resources/card.png")]'>
+    <div className='bg-contain pt-10 h-[478px] w-[334px] bg-[url("img/tmtemplates/resources/card.png")]'>
       <CardField label='Nombre:' propName='name' inputType='text' onChange={onChange} />
       <CardField label='Megacréditos:' propName='mc' inputType='number' numberRange={{ min: 1, max: 99 }} onChange={onChange} />
       <CardField label='Tags:' propName='tag' inputType='select-tag' onChange={onChange} />

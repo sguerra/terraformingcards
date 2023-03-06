@@ -64,7 +64,7 @@ export const CardViewer: FunctionComponent<CardViewerProps> = ({
 
   return (
     <div className='h-full flex flex-grow items-center justify-center md:justify-end m-2'>
-      <div className='relative w-[334px] h-[478px]'>
+      <div id='cardViewer' className='relative w-[334px] h-[478px] m-0 p-0'>
         <div className='absolute flex flex-col justify-center items-center top-20 left-2 w-[310px] h-[200px] overflow-hidden bg-slate-700'>
           <img src='img/upload-icon.png' alt='Upload' className='opacity-50 h-12 -mt-5' />
           <span className='text-sm opacity-50 pt-2'>Subir archivo</span>
@@ -87,10 +87,10 @@ export const CardViewer: FunctionComponent<CardViewerProps> = ({
           )}
           <div className='flex text-black absolute w-full justify-center top-16 text-xl uppercase'>{name}</div>
 
-          <div className='text-white absolute left-32 top-[246px] blur-sm'>
+          <div className='text-white absolute left-32 top-[252px] blur-sm'>
             FANMADE
           </div>
-          <div className='text-black absolute left-32 top-[246px]'>
+          <div className='text-black absolute left-32 top-[252px]'>
             FANMADE
           </div>
 

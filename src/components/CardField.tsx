@@ -54,16 +54,16 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ propName, label, 
 
   return (
     <div className={`flex px-7 py-2 ${hasInputType ? 'justify-between' : 'justify-center items-center'} w-full`}>
-      <label className={`flex-shrink text-sm ${hasInputType ? ' w-24 !text-right pr-4' : 'flex-grow text-center'}`}>{label}</label>
+      <label className={`flex-shrink text-sm ${hasInputType ? ' w-24 !text-right pr-4 py-1' : 'flex-grow text-center'}`}>{label}</label>
 
       {hasInputType && inputType === 'text' && (
-        <input name={propName} className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2' type={inputType} onChange={handleChange} />)}
+        <input name={propName} className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2 py-1' type={inputType} onChange={handleChange} />)}
 
       {hasInputType && inputType === 'number' && (
         <input
           name={propName}
           onChange={handleRangeChange}
-          className='flex-grow text-center rounded-md bg-black bg-opacity-50 border-white border-2' type={inputType}
+          className='flex-grow text-center rounded-md bg-black bg-opacity-50 border-white border-2 py-1' type={inputType}
           min={numberRange.min} max={numberRange.max}
         />)}
 
@@ -71,7 +71,7 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ propName, label, 
         <select
           name={propName}
           onChange={handleChange}
-          className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2'
+          className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2 py-1'
         >
           <option value='none'>Ninguno</option>
           <option value='animal'>Animal</option>
@@ -97,7 +97,7 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ propName, label, 
 
       {hasInputType && inputType === 'select-requisite' && (
         <select
-          className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2'
+          className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2 py-1'
           name={propName}
           onChange={handleChange}
         >
@@ -111,7 +111,7 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ propName, label, 
 
       {hasInputType && inputType === 'select-vps' && (
         <select
-          className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2'
+          className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2 py-1'
           name={propName}
           onChange={handleChange}
         >
@@ -124,7 +124,7 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ propName, label, 
       )}
 
       {hasInputType && inputType === 'image' && (
-        <div {...getRootProps({ className: 'dropzone flex-grow rounded-md bg-white text-black bg-opacity-75 border-white border-2 text-center cursor-pointer' })}>
+        <div {...getRootProps({ className: 'dropzone flex-grow rounded-md bg-white text-black bg-opacity-75 border-white border-2 text-center cursor-pointer py-2' })}>
           <input {...getInputProps()} />
           <p>Subir archivo</p>
         </div>
