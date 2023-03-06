@@ -6,11 +6,15 @@ import { ChangedRecord } from './components/CardField'
 import { CardViewer, CardViewerProps } from './components/CardViewer'
 import { Header } from './components/Header'
 import html2canvas from 'html2canvas'
+import { CloudinaryService } from './services/CloudinaryService'
+import { ConfettiService } from './services/ConfettiService'
+import ThreeDotsSvg from './assets/three-dots.svg'
 
 type CardObject = CardViewerProps
 
 const App: FunctionComponent = () => {
   const [card, setCard] = useState<CardObject & ChangedRecord>({})
+  const [cloudinaryURL, setCloudinaryURL] = useState<string | null>(null)
   const [submittedCard, setSubmittedCard] = useState<HTMLCanvasElement | null>(null)
 
   const changeHandler = (changed: ChangedRecord): void => {
@@ -30,27 +34,27 @@ const App: FunctionComponent = () => {
   }
 
   const shareHandler = (): void => {
-    if (submittedCard == null) return
-    window.open(submittedCard?.toDataURL(), 'new')
+    if (cloudinaryURL == null) return
+    window.open(cloudinaryURL, 'new')
+  }
+
+  const closeHandler = (): void => {
+    setSubmittedCard(null)
+    setCloudinaryURL(null)
   }
 
   useEffect(() => {
     if (submittedCard == null) return
 
-    const confettiId = 'confetti'
-
-    const confetti = new Confetti(confettiId)
-
-    confetti.setCount(300)
-    confetti.setSize(1)
-    confetti.setPower(40)
-    confetti.setFade(false)
-    confetti.destroyTarget(true)
-
-    setTimeout(() => {
-      document.getElementById(confettiId)?.click()
-    }, 0)
+    CloudinaryService.upload(submittedCard.toDataURL()).then((secureURL) => {
+      setCloudinaryURL(secureURL)
+    }) as unknown as Promise<void>
   }, [submittedCard])
+
+  useEffect(() => {
+    if (cloudinaryURL == null) return
+    ConfettiService.play()
+  }, [cloudinaryURL])
 
   return (
     <div id='mainContainer' className='flex flex-col w-screen h-screen bg-black bg-opacity-50 overflow-scroll'>
@@ -68,13 +72,18 @@ const App: FunctionComponent = () => {
       </div>
       {(submittedCard != null) && (
         <div className='fixed w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-10 backdrop-blur-sm'>
-          <div className='text-white flex justify-center items-center rounded-full bg-white bg-opacity-30 hover:bg-opacity-50 cursor-pointer text-3xl w-14 h-14 mb-2' onClick={() => { setSubmittedCard(null) }}>
+          <div className='text-white flex justify-center items-center rounded-full bg-white bg-opacity-30 hover:bg-opacity-50 cursor-pointer text-3xl w-14 h-14 mb-2' onClick={closeHandler}>
             <span className='-mt-1'>x</span>
           </div>
           <img className='w-[334px] h-[478px]' src={`${submittedCard?.toDataURL()}`} alt='submitted card' />
-          <Button id='share' onClick={shareHandler} color='secondary'>
-            Compartir
-          </Button>
+          {cloudinaryURL === null && (
+            <img src={ThreeDotsSvg} alt='loading' className='self-center w-12 m-7' />
+          )}
+          {cloudinaryURL !== null && (
+            <Button id='share' onClick={shareHandler} color='secondary'>
+              Compartir
+            </Button>
+          )}
         </div>
       )}
       <div id='confetti' className='left-0 bottom-0' />
