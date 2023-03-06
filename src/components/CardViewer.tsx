@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 
 export enum Tags {
+  None = 'none',
   Animal = 'animal',
   Building = 'building',
   City = 'city',
@@ -23,13 +24,14 @@ export enum Tags {
 }
 
 export enum Requirements {
+  None = 'none',
   Greenery = 'greenery-no-o2',
   Ocean = 'ocean',
   City = 'city',
   Colony = 'colony',
 }
 
-interface CardViewerProps {
+export interface CardViewerProps {
   name?: string
   mc?: number
   tag?: Tags
@@ -68,12 +70,15 @@ export const CardViewer: FunctionComponent<CardViewerProps> = ({
 
           <span className='absolute flex justify-center text-black left-3 top-7 text-2xl w-11'>{mc}</span>
 
-          <div className='absolute flex justify-center items-center left-16 top-7 w-20 h-8 bg-[url("img/tmtemplates/requisites/min_small.png")] bg-contain bg-no-repeat'>
-            <img className='h-6' src={`img/tmtemplates/tiles/${requirement}.png`} alt='requirement' />
-          </div>
+          {requirement !== Requirements.None && (
+            <div className='absolute flex justify-center items-center left-16 top-7 w-20 h-8 bg-[url("img/tmtemplates/requisites/min_small.png")] bg-contain bg-no-repeat'>
+              <img className='h-6' src={`img/tmtemplates/tiles/${requirement}.png`} alt='requirement' />
+            </div>
+          )}
 
-          <img className='absolute right-5 top-5 w-12 h-12' src={`img/tmtemplates/tags/${tag}.png`} alt='tag' />
-
+          {tag !== Tags.None && (
+            <img className='absolute right-5 top-5 w-12 h-12' src={`img/tmtemplates/tags/${tag}.png`} alt='tag' />
+          )}
           <div className='flex text-black absolute w-full justify-center top-16 text-xl uppercase'>{name}</div>
 
           <div className='text-white absolute left-32 top-[246px] blur-sm'>
