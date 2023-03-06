@@ -103,7 +103,6 @@ const App: FunctionComponent = () => {
           )}
         </div>
       )}
-      <div id='confetti' className='left-0 bottom-0' />
     </div>
   )
 }
