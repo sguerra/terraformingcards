@@ -13,10 +13,8 @@ export const CardEditor: FunctionComponent<CardEditorProps> = ({ onChange = () =
       <CardField label='Tags:' propName='tag' inputType='select-tag' onChange={onChange} />
       <CardField label='Imagen:' inputType='text' />
       <CardField label='Requisitos:' propName='requirement' inputType='select-requisite' onChange={onChange} />
-      <CardField label='P de victoria:' propName='vps' inputType='number' numberRange={{ min: 1, max: 5 }} onChange={onChange} />
-      <CardField label='Expansión:' inputType='text' />
+      <CardField label='P. de victoria:' propName='vps' inputType='select-vps' onChange={onChange} />
       <CardField label='Efectos' />
-      <CardField label='Íconos:' inputType='text' />
       <CardField label='Descripción:' propName='effectText' inputType='text' onChange={onChange} />
       <CardField label='Contexto:' propName='flavorText' inputType='text' onChange={onChange} />
     </div>

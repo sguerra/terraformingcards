@@ -5,7 +5,7 @@ export type ChangedRecord = Record<string, string | number>
 interface CardFieldProps {
   children?: ReactNode
   label: string
-  inputType?: 'text' | 'number' | 'select-tag' | 'select-requisite'
+  inputType?: 'text' | 'number' | 'select-tag' | 'select-requisite' | 'select-vps'
   numberRange?: { min: number, max: number }
   propName?: string
   onChange?: (changed: ChangedRecord) => void
@@ -22,18 +22,34 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ propName, label, 
     onChange(changed)
   }
 
+  const handleRangeChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+    const target = e.target
+    const { value } = target
+    const { min, max } = numberRange
+    const numbervalue = Number(value)
+    if (numbervalue < min) {
+      target.value = min.toString()
+      return
+    }
+    if (numbervalue > max) {
+      target.value = max.toString()
+      return
+    }
+    handleChange(e)
+  }
+
   return (
-    <div className={`flex px-7 py-1 ${hasInputType ? 'justify-between' : 'justify-center items-center'} w-full`}>
-      <label className={`${hasInputType ? 'w-28 truncate !text-right pr-2' : 'flex-grow text-center'} pr-2`}>{label}</label>
+    <div className={`flex px-7 py-2 ${hasInputType ? 'justify-between' : 'justify-center items-center'} w-full`}>
+      <label className={`flex-shrink text-sm ${hasInputType ? ' w-24 !text-right pr-4' : 'flex-grow text-center'}`}>{label}</label>
 
       {hasInputType && inputType === 'text' && (
-        <input name={propName} className='flex-grow  rounded-md bg-black bg-opacity-50 border-white border-2' type={inputType} onChange={handleChange} />)}
+        <input name={propName} className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2' type={inputType} onChange={handleChange} />)}
 
       {hasInputType && inputType === 'number' && (
         <input
           name={propName}
-          onChange={handleChange}
-          className='flex-grow text-right rounded-md bg-black bg-opacity-50 border-white border-2' type={inputType}
+          onChange={handleRangeChange}
+          className='flex-grow text-center rounded-md bg-black bg-opacity-50 border-white border-2' type={inputType}
           min={numberRange.min} max={numberRange.max}
         />)}
 
@@ -76,6 +92,20 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ propName, label, 
           <option value='colony'>Colonia</option>
           <option value='greenery-no-o2'>Invernadero</option>
           <option value='ocean'>Océano</option>
+        </select>
+      )}
+
+      {hasInputType && inputType === 'select-vps' && (
+        <select
+          className='flex-grow rounded-md bg-black bg-opacity-50 border-white border-2'
+          name={propName}
+          onChange={handleChange}
+        >
+          <option value='1'>1</option>
+          <option value='2'>2</option>
+          <option value='3'>3</option>
+          <option value='4'>4</option>
+          <option value='5'>5</option>
         </select>
       )}
     </div>

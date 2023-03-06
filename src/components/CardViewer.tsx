@@ -41,7 +41,7 @@ export interface CardViewerProps {
   requirement?: Requirements
 }
 
-const MAX_EFFECT_TEXT = 90
+const MAX_EFFECT_TEXT = 100
 const MAX_FLAVOR_TEXT = 80
 
 function wrapText (text: string, maxLength: number): string {
@@ -49,10 +49,10 @@ function wrapText (text: string, maxLength: number): string {
 }
 
 export const CardViewer: FunctionComponent<CardViewerProps> = ({
-  name = 'Sample Card',
-  mc = 99,
-  tag = Tags.Moon,
-  vps = 5,
+  name = 'Carta Ejemplo',
+  mc = 1,
+  tag = Tags.Plant,
+  vps = 1,
   requirement = Requirements.Greenery,
   effectText = 'Agrega un animal a cualquier carta. Incrementa tu produccion de plantas 1 paso.',
   flavorText = 'Un nuevo valle ha sido encontrado.'
@@ -63,8 +63,9 @@ export const CardViewer: FunctionComponent<CardViewerProps> = ({
   return (
     <div className='h-full flex flex-grow items-center justify-end mr-5'>
       <div className='relative w-[334px] h-[478px]'>
-        <div className='absolute flex justify-center items-center top-20 left-2 w-[310px] h-[200px] bg-slate-700'>
-          <img src='img/upload-icon.png' alt='Upload' className='opacity-50 h-16' />
+        <div className='absolute flex flex-col justify-center items-center top-20 left-2 w-[310px] h-[200px] bg-slate-700'>
+          <img src='img/upload-icon.png' alt='Upload' className='opacity-50 h-12 -mt-5' />
+          <span className='text-sm opacity-50 pt-2'>Subir imagen</span>
         </div>
         <div className='relative w-[334px] h-[478px] bg-[url("img/tmtemplates/templates/green_normal.png")] bg-contain bg-no-repeat bg-center'>
 
@@ -88,17 +89,11 @@ export const CardViewer: FunctionComponent<CardViewerProps> = ({
             FANMADE
           </div>
 
-          <img className='absolute right-5 bottom-14 w-24 flex justify-center' src={`img/tmtemplates/VPs/${vps}.png`} alt='VPs' />
+          <img className='absolute right-5 bottom-20 w-24 flex justify-center' src={`img/tmtemplates/VPs/${vps}.png`} alt='VPs' />
 
-          <img className='absolute left-24 bottom-[160px] w-8 flex justify-center' src='img/tmtemplates/resources/animal.png' alt='plant1' />
+          <span className='absolute left-8 bottom-20 w-44 h-28 flex items-center justify-center text-sm text-center text-black'>({wrappedEffectText})</span>
 
-          <div className='absolute flex justify-center items-center left-6 bottom-[150px] w-12 h-12 bg-[url("img/tmtemplates/production-boxes/1x1.png")] bg-contain'>
-            <img className='w-8' src='img/tmtemplates/resources/plant.png' alt='production' />
-          </div>
-
-          <span className='absolute flex items-center justify-center text-center text-black left-8 bottom-16 text-sm w-44 h-20'>({wrappedEffectText})</span>
-
-          <span className='absolute w-64 h-8 flex justify-center items-center text-center italic  text-black right-10 bottom-6 text-xs border-black border-t'>
+          <span className='absolute w-64 h-8 right-10 bottom-8 flex justify-center items-center text-center italic  text-black text-xs border-black border-t'>
             {wrappedFlavorText}
           </span>
         </div>
