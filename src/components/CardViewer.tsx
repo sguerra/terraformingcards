@@ -39,6 +39,7 @@ export interface CardViewerProps {
   effectText?: string
   flavorText?: string
   requirement?: Requirements
+  image?: string
 }
 
 const MAX_EFFECT_TEXT = 100
@@ -55,7 +56,8 @@ export const CardViewer: FunctionComponent<CardViewerProps> = ({
   vps = 1,
   requirement = Requirements.Greenery,
   effectText = 'Agrega un animal a cualquier carta. Incrementa tu produccion de plantas 1 paso.',
-  flavorText = 'Un nuevo valle ha sido encontrado.'
+  flavorText = 'Un nuevo valle ha sido encontrado.',
+  image = 'img/mars.jpeg'
 }) => {
   const wrappedEffectText = wrapText(effectText, MAX_EFFECT_TEXT)
   const wrappedFlavorText = wrapText(flavorText, MAX_FLAVOR_TEXT)
@@ -63,9 +65,12 @@ export const CardViewer: FunctionComponent<CardViewerProps> = ({
   return (
     <div className='h-full flex flex-grow items-center justify-center md:justify-end m-2'>
       <div className='relative w-[334px] h-[478px]'>
-        <div className='absolute flex flex-col justify-center items-center top-20 left-2 w-[310px] h-[200px] bg-slate-700'>
+        <div className='absolute flex flex-col justify-center items-center top-20 left-2 w-[310px] h-[200px] overflow-hidden bg-slate-700'>
           <img src='img/upload-icon.png' alt='Upload' className='opacity-50 h-12 -mt-5' />
-          <span className='text-sm opacity-50 pt-2'>Subir imagen</span>
+          <span className='text-sm opacity-50 pt-2'>Subir archivo</span>
+          {image !== '' && (
+            <img src={image} className='absolute flex top-0 left-0 w-full h-full object-cover' alt='uploaded image' />
+          )}
         </div>
         <div className='relative w-[334px] h-[478px] bg-[url("img/tmtemplates/templates/green_normal.png")] bg-contain bg-no-repeat bg-center'>
 

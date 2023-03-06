@@ -1,17 +1,24 @@
-import { ChangeEvent, FunctionComponent, ReactNode } from 'react'
+import { ChangeEvent, FunctionComponent, ReactNode, useEffect } from 'react'
+import { useDropzone } from 'react-dropzone'
 
 export type ChangedRecord = Record<string, string | number>
 
 interface CardFieldProps {
   children?: ReactNode
   label: string
-  inputType?: 'text' | 'number' | 'select-tag' | 'select-requisite' | 'select-vps'
+  inputType?: 'text' | 'number' | 'select-tag' | 'select-requisite' | 'select-vps' | 'image'
   numberRange?: { min: number, max: number }
   propName?: string
   onChange?: (changed: ChangedRecord) => void
 }
 
 export const CardField: FunctionComponent<CardFieldProps> = ({ propName, label, inputType, numberRange = { min: 0, max: 0 }, onChange = (changed: ChangedRecord) => {} }) => {
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    accept: {
+      'image/png': ['.png'],
+      'image/jpg': ['.jpg', '.jpeg']
+    }
+  })
   const hasInputType = Boolean(inputType)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
@@ -37,6 +44,13 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ propName, label, 
     }
     handleChange(e)
   }
+
+  useEffect(() => {
+    const file = acceptedFiles.pop()
+    if (file == null) return
+    const image = URL.createObjectURL(file)
+    onChange({ image })
+  }, [acceptedFiles])
 
   return (
     <div className={`flex px-7 py-2 ${hasInputType ? 'justify-between' : 'justify-center items-center'} w-full`}>
@@ -107,6 +121,13 @@ export const CardField: FunctionComponent<CardFieldProps> = ({ propName, label, 
           <option value='4'>4</option>
           <option value='5'>5</option>
         </select>
+      )}
+
+      {hasInputType && inputType === 'image' && (
+        <div {...getRootProps({ className: 'dropzone flex-grow rounded-md bg-white text-black bg-opacity-75 border-white border-2 text-center cursor-pointer' })}>
+          <input {...getInputProps()} />
+          <p>Subir archivo</p>
+        </div>
       )}
     </div>
   )
