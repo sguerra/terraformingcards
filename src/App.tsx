@@ -16,15 +16,15 @@ const App: FunctionComponent = () => {
   }
 
   return (
-    <div className='flex flex-col w-screen h-screen bg-black bg-opacity-50'>
+    <div className='flex flex-col w-screen h-screen bg-black bg-opacity-50 overflow-scroll'>
       <Header title='Terraforming Cards' />
-      <div className='flex flex-row flex-grow text-white'>
+      <div className='flex flex-col-reverse md:flex-row sm:mb-2 flex-grow text-white'>
         <CardViewer {...card} />
-        <div className='h-full flex flex-grow items-center justify-start ml-5'>
+        <div className='h-full flex flex-grow items-center justify-center md:justify-start m-2'>
           <CardEditor onChange={changeHandler} />
         </div>
       </div>
-      <div className='h-20'>
+      <div className='h-24 pb-2'>
         <Button>
           Submit Card
         </Button>

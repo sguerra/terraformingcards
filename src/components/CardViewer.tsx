@@ -61,7 +61,7 @@ export const CardViewer: FunctionComponent<CardViewerProps> = ({
   const wrappedFlavorText = wrapText(flavorText, MAX_FLAVOR_TEXT)
 
   return (
-    <div className='h-full flex flex-grow items-center justify-end mr-5'>
+    <div className='h-full flex flex-grow items-center justify-center md:justify-end m-2'>
       <div className='relative w-[334px] h-[478px]'>
         <div className='absolute flex flex-col justify-center items-center top-20 left-2 w-[310px] h-[200px] bg-slate-700'>
           <img src='img/upload-icon.png' alt='Upload' className='opacity-50 h-12 -mt-5' />
