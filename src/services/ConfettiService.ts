@@ -1,4 +1,5 @@
 const confettiId = 'confetti'
+// @ts-expect-error
 const confetti = new Confetti(confettiId)
 
 export const ConfettiService = {

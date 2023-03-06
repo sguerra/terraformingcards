@@ -51,6 +51,7 @@ const App: FunctionComponent = () => {
     const yRotation = (((pageX - 100 - height) / 2) / height) * 5
     const xRotation = (((pageY - 100 - width) / 2) / width) * 5
 
+    // @ts-expect-error
     e.target.setAttribute('style', `transform: perspective(500px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`)
   }
 
