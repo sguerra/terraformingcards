@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent, MouseEvent, useEffect, useState } from 'react'
 import './App.css'
 import { Button } from './components/Button'
 import { CardEditor } from './components/CardEditor'
@@ -43,6 +43,22 @@ const App: FunctionComponent = () => {
     setCloudinaryURL(null)
   }
 
+  const mouseMoveHandler = (e: MouseEvent): void => {
+    const [width, height] = [334, 478]
+
+    const { pageX, pageY } = e
+
+    const yRotation = (((pageX - 100 - height) / 2) / height) * 5
+    const xRotation = (((pageY - 100 - width) / 2) / width) * 5
+
+    e.target.setAttribute('style', `transform: perspective(500px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`)
+  }
+
+  const mouseOutHandler = (e: MouseEvent): void => {
+    const el = e.currentTarget
+    el.setAttribute('style', 'transform: perspective(500px) scale(1) rotateX(0) rotateY(0)')
+  }
+
   useEffect(() => {
     if (submittedCard == null) return
 
@@ -75,7 +91,7 @@ const App: FunctionComponent = () => {
           <div className='text-white flex justify-center items-center rounded-full bg-white bg-opacity-30 hover:bg-opacity-50 cursor-pointer text-3xl w-14 h-14 mb-2' onClick={closeHandler}>
             <span className='-mt-1'>x</span>
           </div>
-          <img className='w-[334px] h-[478px]' src={`${submittedCard?.toDataURL()}`} alt='submitted card' />
+          <img id='img' className='w-[334px] h-[478px] z-10 transition-shadow hover:shadow-lg hover:shadow-black rounded-3xl bg-black bg-opacity-25' src={`${submittedCard?.toDataURL()}`} alt='submitted card' onMouseMove={mouseMoveHandler} onMouseOut={mouseOutHandler} />
           {cloudinaryURL === null && (
             <img src={ThreeDotsSvg} alt='loading' className='self-center w-12 m-7' />
           )}
