@@ -2,10 +2,24 @@ import { FunctionComponent } from 'react'
 
 export enum Tags {
   Animal = 'animal',
+  Building = 'building',
+  City = 'city',
   Earth = 'earth',
+  Event = 'event',
+  Galactic = 'galactic',
+  Infrastructure = 'infrastructure',
+  Jovian = 'jovian',
+  Mars = 'mars',
+  Microbe = 'microbe',
+  Moon = 'moon',
+  Planetary = 'planetary',
   Plant = 'plant',
+  Power = 'power',
+  Radioactive = 'radioactive',
+  Science = 'science',
   Space = 'space',
-  Venus = 'venus'
+  Venus = 'venus',
+  Wild = 'wild'
 }
 
 interface CardViewerProps {
@@ -18,7 +32,7 @@ interface CardViewerProps {
 export const CardViewer: FunctionComponent<CardViewerProps> = ({
   name = 'Sample Card',
   mc = 99,
-  tag = Tags.Earth,
+  tag = Tags.Moon,
   vps = 5
 }) => {
   return (
@@ -41,6 +55,18 @@ export const CardViewer: FunctionComponent<CardViewerProps> = ({
             FANMADE
           </div>
           <img className='absolute right-5 bottom-14 w-24 flex justify-center' src={`img/tmtemplates/VPs/${vps}.png`} alt='VPs' />
+
+          <img className='absolute left-6 bottom-40 w-8 flex justify-center' src='img/tmtemplates/resources/plant.png' alt='plant1' />
+          <img className='absolute left-16 bottom-40 w-8 flex justify-center' src='img/tmtemplates/resources/plant.png' alt='plant2' />
+
+          <img className='absolute left-6 bottom-24 w-12 flex justify-center' src='img/tmtemplates/production-boxes/1x1.png' alt='VPs' />
+          <img className='absolute left-8 bottom-24 w-8 flex justify-center' src='img/tmtemplates/resources/plant.png' alt='VPs' />
+
+          <span className='absolute flex justify-center font-sans  text-black right-28 bottom-14 text-sm w-32'>(Add two animals to any card. Increase your plant production 1 steps.)</span>
+
+          <span className='absolute flex justify-center font-sans font-light italic  text-black right-10 bottom-7 text-sm '>
+            Un nuevo valle ha sido encontrado.
+          </span>
         </div>
       </div>
     </div>
