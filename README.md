@@ -1,5 +1,5 @@
 # Terraforming Cards
-Terraforming Mars is a fanmade site to create custom cards
+Terraforming Cards is a fanmade site to create custom cards for Terraforming Cards board game
 
 ## Features
 
