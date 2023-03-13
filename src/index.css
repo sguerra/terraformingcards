@@ -4,13 +4,13 @@
 
 @font-face {
   font-family: Prototype;
-  src: url(fonts/Prototype.ttf);
+  src: url(../public/fonts/Prototype.ttf);
 }
 
 :root{
   font-family: 'Prototype';
   background-color: black;
-  background: url("img/terraforming-mars-artwork.png");
+  background: url("../public/img/terraforming-mars-artwork.png");
   background-position: right;
   background-repeat: no-repeat;
   background-size: cover;

@@ -72,12 +72,12 @@ export const CardViewer: FunctionComponent<CardViewerProps> = ({
             <img src={image} className='absolute flex top-0 left-0 w-full h-full object-cover' alt='uploaded image' />
           )}
         </div>
-        <div className='relative w-[334px] h-[478px] bg-[url("img/tmtemplates/templates/green_normal.png")] bg-contain bg-no-repeat bg-center'>
+        <div className='relative w-[334px] h-[478px] bg-[url("../public/img/tmtemplates/templates/green_normal.png")] bg-contain bg-no-repeat bg-center'>
 
           <span className='absolute flex justify-center text-black left-3 top-7 text-2xl w-11'>{mc}</span>
 
           {requirement !== Requirements.None && (
-            <div className='absolute flex justify-center items-center left-16 top-7 w-20 h-8 bg-[url("img/tmtemplates/requisites/min_small.png")] bg-contain bg-no-repeat'>
+            <div className='absolute flex justify-center items-center left-16 top-7 w-20 h-8 bg-[url("../public/img/tmtemplates/requisites/min_small.png")] bg-contain bg-no-repeat'>
               <img className='h-6' src={`img/tmtemplates/tiles/${requirement}.png`} alt='requirement' />
             </div>
           )}
